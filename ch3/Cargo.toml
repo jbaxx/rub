@@ -1,0 +1,16 @@
+[package]
+name = "ch3"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "31"
+path = "src/1_variables_and_mutability/bin/main.rs"
+
+[[bin]]
+name = "32"
+path = "src/2_data_types/bin/main.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
