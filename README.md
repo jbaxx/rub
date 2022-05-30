@@ -1,2 +1,2 @@
 # rub
-The Rust journey
+The Rust Programming Language Book - notes
