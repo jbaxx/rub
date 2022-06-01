@@ -15,6 +15,14 @@ path = "src/2_data_types/bin/main.rs"
 name = "33"
 path = "src/3_functions/main.rs"
 
+[[bin]]
+name = "35"
+path = "src/5_if_and_loops/main.rs"
+
+[[bin]]
+name = "3exer"
+path = "src/exercise/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
