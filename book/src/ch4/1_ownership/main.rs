@@ -34,4 +34,18 @@
 // * There can only be one owner at a time
 // * When the owner goes out of scope, the value will be dropped.
 
-fn main() {}
+fn main() {
+
+    // Variable Scope
+    let s = "hello";
+    // The variable s refers to a string literal, the value is hardcoded into the text of our
+    // program.
+    
+    // j is not valid here, it's not yet declared
+    {
+        let _j = "hello";  // j is valid from this point forward
+                           //
+                           // do stuff with j
+                           //
+    } // this scope is now over, and j is no longer valid
+}
