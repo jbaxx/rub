@@ -11,6 +11,10 @@ path = "src/1_variables_and_mutability/bin/main.rs"
 name = "32"
 path = "src/2_data_types/bin/main.rs"
 
+[[bin]]
+name = "33"
+path = "src/3_functions/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
