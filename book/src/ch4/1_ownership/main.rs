@@ -37,7 +37,7 @@
 fn main() {
 
     // Variable Scope
-    let s = "hello";
+    let _s = "hello";
     // The variable s refers to a string literal, the value is hardcoded into the text of our
     // program.
     
@@ -48,4 +48,8 @@ fn main() {
                            // do stuff with j
                            //
     } // this scope is now over, and j is no longer valid
+      // - When s comes into scope, it is valid
+      // - It remains valid until it goes out of scope
+
+    // The String Type
 }
