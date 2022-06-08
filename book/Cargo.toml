@@ -31,6 +31,10 @@ path = "src/ch4/1_ownership/main.rs"
 name = "42"
 path = "src/ch4/2_references_and_borrowing/main.rs"
 
+[[bin]]
+name = "43"
+path = "src/ch4/3_slice_type/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
