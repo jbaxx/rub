@@ -39,6 +39,10 @@ path = "src/ch4/3_slice_type/main.rs"
 name = "51"
 path = "src/ch5/1_structs/main.rs"
 
+[[bin]]
+name = "52"
+path = "src/ch5/2_structs_example/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
