@@ -43,6 +43,10 @@ path = "src/ch5/1_structs/main.rs"
 name = "52"
 path = "src/ch5/2_structs_example/main.rs"
 
+[[bin]]
+name = "53"
+path = "src/ch5/3_method_syntax/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
