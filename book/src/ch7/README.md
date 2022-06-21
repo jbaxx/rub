@@ -135,3 +135,71 @@ pub fn eat_at_restaurant() {
 ```
 
 See more at [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
+
+### Recommendation
+For packages with both binary and library crates root, the module tree should be defined in `src/lib.rs`, the any public items can be used in the binary crate by starting paths with the name of the package. The binary crate becomes a user of the library crate just like a completely external crate would use the library crate.
+
+## Starting Relative Paths with `super`
+Using `super` at the start of the path is like starting a filesystem path with the `..` syntax.
+```
+fn deliver_order() {}
+
+mod back_of_house {
+    fn fix_incorrect_order() {
+        cook_order();
+        super::deliver_order();
+    }
+
+    fn cook_order() {}
+}
+```
+
+## Making Structs and Enums Public
+If we use pub before a struct definition, we make the struct public, but the struct's fields will still be private.
+We can make each field public or not on a case-by-case basis.
+In the example the `toast` field is public and can be accessed and modified in the outter function, but the field `seasonal_fruit` isn't.
+NOTE: as `back_of_house::Breakfast` has a private field, we need a public function (constructor) to construct it, as we won't be able to create an instance of `Breakfast` otherwise.
+```
+mod back_of_house {
+    pub struct Breakfast {
+        pub toast: String,
+        seasonal_fruit: String,
+    }
+
+    impl Breakfast {
+        pub fn summer(toast: &str) -> Breakfast {
+            Breakfast {
+                toast: String::from(toast),
+                seasonal_fruit: String::from("peaches"),
+            }
+        }
+    }
+}
+
+pub fn eat_at_restaurant() {
+    // Order a breakfast in the summer with Rye toast
+    let mut meal = back_of_house::Breakfast::summer("Rye");
+    // Change our mind about what bread we'd like
+    meal.toast = String::from("Wheat");
+    println!("I'd like {} toast please", meal.toast);
+
+    // The next line won't compile if we uncomment it; we're not allowed
+    // to see or modify the seasonal fruit that comes with the meal
+    // meal.seasonal_fruit = String::from("blueberries");
+}
+```
+
+In contrast, if we make an enum public, all of its variants are then public.
+```
+mod back_of_house {
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
+}
+
+pub fn eat_at_restaurant() {
+    let order1 = back_of_house::Appetizer::Soup;
+    let order2 = back_of_house::Appetizer::Salad;
+}
+```
