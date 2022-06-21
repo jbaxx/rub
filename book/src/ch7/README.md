@@ -92,4 +92,46 @@ crate
 
 ```
 
-## Paths
+## Paths for Referring to an Item in the Module Tree
+A path can take two forms:
+* An *absolute path* starts from a crate root by using a crate name (for code from an external crate) or a literal `crate` (for code from the current crate).
+* A *relative path* from the current module and uses `self`, `super`, or an identifier in the current module.
+
+```
+mod front_of_house {
+    mod hosting {
+        fn add_to_waitlist() {}
+    }
+}
+
+pub fn eat_at_restaurant() {
+    // Absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Relative path
+    front_of_house::hosting::add_to_waitlist();
+}
+```
+
+NOTE: Items in a parent module can't use the private items inside child modules, but items in child modules can use the items in their ancestor modules.
+Child modules wrap and hide their implementation details, but the child modules can see the context in which they're defined.
+
+## Making a module public doesn't make its contents public.
+For the `eat_at_restaurant` function to compile, we need to provide public visiblity to all the members in the module tree down to the `add_to_waitlist` function.
+```
+mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub fn eat_at_restaurant() {
+    // Absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Relative path
+    front_of_house::hosting::add_to_waitlist();
+}
+```
+
+See more at [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
