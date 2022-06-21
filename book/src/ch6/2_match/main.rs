@@ -66,6 +66,16 @@ fn value_in_cents_3(moneda: &Moneda) -> u8 {
     }
 }
 
+// Matching with Option<T>
+// We can use match to extract values from Option
+// Let's create a funciton that add's 1 to an i32 in an Option
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
+
 fn main() {
 
     let coin = Coin::Dime;
@@ -73,4 +83,28 @@ fn main() {
     println!("The value of {:#?} coin is: {}", coin, value_in_cents(&coin));
     println!("The value of {:#?} coin is: {}", coin, value_in_cents_2(&coin));
     println!("Moneda de: {}", value_in_cents_3(&Moneda::Quarter(Provincia::Cocle)));
+
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+    println!("Value for six: {:?}, none: {:?}", six, none);
+
+    // match are exhaustive, we need to provide a case for all variants
+    let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        other => move_player(other),
+    }
+
+    // if we don't need the result, we can use _
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => (),
+    }
 }
+
+fn add_fancy_hat() {}
+fn remove_fancy_hat() {}
+fn move_player(num_spaces: u8) {}
