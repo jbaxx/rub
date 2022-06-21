@@ -5,6 +5,7 @@ It contains a `Cargo.toml` file that descrives how to build those crates.
 ## Crate
 A create can be a binary crate or a library crate.
 The crate root is a source file that the Rust compiler starts from and makes up the root module of the crate.
+NOTE: The content of either `src/main.rs` and `src/lib.rs` form a module named `crate` at the root of the crate's module structure.
 
 ## Modules Quick Reference
 * Start from the create root: When compiling a create, the compiler first looks in the crate root file (usually src/lib.rs for a library crate or src/main.rs for a binary crate).
@@ -56,3 +57,39 @@ pub struct Asparagus {}
 ```
 
 ## Grouping related code in modules
+We can create a new library crate with `cargo new --lib restaurant`
+The `src/lib.rs` file:
+```
+mod front_of_house {
+    mod hosting {
+        fn add_to_waitlist() {}
+
+        fn seat_at_table() {}
+    }
+
+    mod serving {
+        fn take_order() {}
+
+        fn serve_order() {}
+
+        fn take_payment() {}
+    }
+}
+```
+
+NOTE: The content of either `src/main.rs` and `src/lib.rs` form a module named `crate` at the root of the crate's module structure.
+
+```
+crate
+ └── front_of_house
+     ├── hosting
+     │   ├── add_to_waitlist
+     │   └── seat_at_table
+     └── serving
+         ├── take_order
+         ├── serve_order
+         └── take_payment
+
+```
+
+## Paths
